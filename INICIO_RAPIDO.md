@@ -106,27 +106,12 @@ git push origin main
 - Para classificar uma foto, use `data-category="noivas"` ou `data-category="modelos"` no `.gallery-item`.
 
 ### 🎬 Galeria de Vídeos (`#videos`)
-- Cada vídeo abre em um player (modal) na própria página, usando o YouTube.
-- Troque `ID_DO_VIDEO_1`, `2`, `3` (no atributo `data-youtube`) pelo ID de cada vídeo — é o trecho depois de `v=` no link do YouTube. Ex: em `youtube.com/watch?v=ABC123`, o ID é `ABC123`.
-- Botão vermelho "Ver Canal Completo no YouTube": troque o link `https://www.youtube.com/@SEU_CANAL_AQUI` pelo canal do cliente.
-- As miniaturas usam `assets/video-thumb-1.jpg`, `2.jpg`, `3.jpg` — capturas de tela dos vídeos funcionam bem como miniatura.
-
----
-
-## 📋 Estrutura Arquivo por Arquivo
-
-| Arquivo | Função | Editar? |
-|---------|--------|---------|
-| `index.html` | Site completo | ⚠️ Com cuidado |
-| `icon.png` | Logo do ateliê | ✓ Substitua |
-| `assets/*` | Suas fotos | ✓ Sempre |
-| `PREMIUM_FEATURES.md` | Documentação | ✓ Leia |
-| `watermark_tool.py` | Script marca d'água | ✓ Use |
-| `INICIO_RAPIDO.md` | Este arquivo | ✓ Consulte |
-
----
-
-## 🎨 Personalizações Básicas
+- Os 3 vídeos locais ficam na pasta `videos/` e já estão configurados no `index.html`.
+- Clique em qualquer card para abrir o player com controles e reprodução automática.
+- Os arquivos usados são `video1.mp4`, `video2.mp4` e `video3.mp4`.
+- As miniaturas são `video1-poster.jpg`, `video2-poster.jpg` e `video3-poster.jpg`.
+- O código continua aceitando YouTube: se um card tiver `data-youtube` válido e não tiver `data-video`, ele abre o vídeo pelo YouTube.
+- Para publicar na Hostinger, envie a pasta `videos/` junto com `index.html`, `script.js`, `style.css` e `assets/`.
 
 ### Trocar Cores Premium
 No `index.html`, procure por `:root {` (~linha 25):

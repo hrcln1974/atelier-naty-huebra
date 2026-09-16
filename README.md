@@ -8,7 +8,7 @@ Landing page estática, responsiva e pronta para GitHub/Hostinger. Não precisa 
 - Botões de WhatsApp, formulário de solicitação de horário e links sociais.
 - Galeria editorial com ampliação de imagens (lightbox) e controle por teclado.
 - Carrossel de imagens com setas, indicadores e gesto de deslizar no celular.
-- FAQ, SEO básico, favicon e dados estruturados para mecanismos de busca.
+- Galeria de vídeos MP4 com player em modal, controles, autoplay e suporte a celular (iOS/Android).\n- FAQ, SEO básico, favicon e dados estruturados para mecanismos de busca.
 
 ## Atualizar ou cadastrar imagens
 

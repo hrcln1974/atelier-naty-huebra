@@ -337,56 +337,48 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function isValidYouTubeId(id) {
-    return (
-      typeof id === "string" &&
-      /^[a-zA-Z0-9_-]{11}$/.test(id)
-    );
+    return typeof id === "string" && /^[a-zA-Z0-9_-]{11}$/.test(id);
   }
 
   function openVideoModal(item) {
     if (!videoModal || !videoModalFrame) return;
 
-    const videoId = item.dataset.youtube || "";
-    const caption =
-      item.dataset.caption ||
-      "Vídeo do Ateliê Natália Huebra";
+    const videoId = item.dataset.youtube?.trim() || "";
+    const videoSrc = item.dataset.video?.trim() || "";
+    const caption = item.dataset.caption || "Vídeo do Ateliê Natália Huebra";
 
-    if (!isValidYouTubeId(videoId)) {
-      alert(
-        "Este vídeo ainda não foi configurado. " +
-        "Adicione o ID de 11 caracteres do vídeo do YouTube no atributo data-youtube."
-      );
+    videoModalFrame.replaceChildren();
+
+    if (videoSrc) {
+      const video = document.createElement("video");
+      video.src = videoSrc;
+      video.controls = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      video.preload = "metadata";
+      video.setAttribute("aria-label", caption);
+      videoModalFrame.appendChild(video);
+    } else if (isValidYouTubeId(videoId)) {
+      const iframe = document.createElement("iframe");
+      iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+      iframe.title = caption;
+      iframe.loading = "lazy";
+      iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
+      iframe.setAttribute("allowfullscreen", "");
+      videoModalFrame.appendChild(iframe);
+    } else {
+      alert("Este vídeo ainda não foi configurado.");
       return;
     }
-
-    const iframe = document.createElement("iframe");
-
-    iframe.src =
-      `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
-
-    iframe.title = caption;
-    iframe.loading = "lazy";
-
-    iframe.setAttribute(
-      "allow",
-      "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    );
-
-    iframe.setAttribute("allowfullscreen", "");
-
-    videoModalFrame.replaceChildren(iframe);
 
     videoModal.classList.add("open");
     videoModal.setAttribute("aria-hidden", "false");
     document.body.classList.add("modal-open");
-
     videoModalClose?.focus();
   }
 
   document.querySelectorAll(".video-item").forEach((item) => {
-    item.addEventListener("click", () => {
-      openVideoModal(item);
-    });
+    item.addEventListener("click", () => openVideoModal(item));
 
     item.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
